@@ -24,11 +24,11 @@ RSpec.describe IdeasController, type: :controller do
   # Idea. As you add validations to Idea, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    {question: "Was ist eine Kugel?", explanation: "Diese Frage ist Unsinn"}
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    {question: nil, explanation: nil}
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +103,14 @@ RSpec.describe IdeasController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        {question:"Eine neue Frage", explanation: "Wirklich eine gute Frage, weil..."}
       }
 
       it "updates the requested idea" do
         idea = Idea.create! valid_attributes
         put :update, {:id => idea.to_param, :idea => new_attributes}, valid_session
         idea.reload
-        skip("Add assertions for updated state")
+        expect(idea.question).to eq("Eine neue Frage"); 
       end
 
       it "assigns the requested idea as @idea" do
