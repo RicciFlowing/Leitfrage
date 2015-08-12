@@ -1,0 +1,5 @@
+<ul>
+  <% @terms.each do |term| %>
+  <li> <%= link_to term.name, term_url(term) %></li>
+  <%end%>
+</ul>

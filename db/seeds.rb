@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+term = Term.create({name: 'Kreis'})
+ideas = Idea.create(question:"Warum eigentlich der Kreis", explanation:"Weil er rund ist", term: term)

@@ -1,0 +1,6 @@
+<h2><%=@term.name%></h2>
+  <ul>
+    <% @term.ideas.each do |idea| %>
+    <%= render idea %>
+    <%end%>
+  </ul>
