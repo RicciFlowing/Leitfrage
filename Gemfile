@@ -51,4 +51,6 @@ group :development, :test do
   gem 'rspec-rails'
 
   gem 'shoulda'
+
+  gem 'capybara'
 end
