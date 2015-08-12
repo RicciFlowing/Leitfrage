@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-3">
+    <%= idea.question %>
+  </div>
+  <div class="col-md-6">
+    <%= idea.explanation %>
+  </div>
+  <div class="col-md-2">
+    <%= idea.user %>
+  </div>
+  <div class="col-md-1">
+    <%= link_to 'Show', idea %>
+    <%= link_to 'Edit', edit_idea_path(idea) %>
+  </div>
