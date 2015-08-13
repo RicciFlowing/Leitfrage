@@ -19,9 +19,6 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe IdeasController, type: :controller do
-  before(:each) do
-    sign_in FactoryGirl.create(:user)
-  end
 
   let(:term){ term = Term.create()}
 
@@ -41,6 +38,7 @@ RSpec.describe IdeasController, type: :controller do
   # IdeasController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+describe "Wit no user signed in" do
   describe "GET #index" do
     it "assigns all ideas as @ideas" do
       idea = Idea.create! valid_attributes
@@ -55,6 +53,20 @@ RSpec.describe IdeasController, type: :controller do
       get :show, {:id => idea.to_param}, valid_session
       expect(assigns(:idea)).to eq(idea)
     end
+  end
+
+  describe "POST #create" do
+    subject {post :create, {:idea => valid_attributes}}
+      it "shoould redirect to create a new_user_session_path" do
+        expect{redirect_to new_user_session_path}
+      end
+    end
+end
+
+describe "With user signed in" do
+
+  before(:each) do
+    sign_in FactoryGirl.create(:user)
   end
 
   describe "GET #new" do
@@ -160,5 +172,9 @@ RSpec.describe IdeasController, type: :controller do
       expect(response).to redirect_to(ideas_url)
     end
   end
+end
+
+
+
 
 end
