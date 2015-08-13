@@ -19,6 +19,9 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe IdeasController, type: :controller do
+  before(:each) do
+    sign_in FactoryGirl.create(:user)
+  end
 
   let(:term){ term = Term.create()}
 
