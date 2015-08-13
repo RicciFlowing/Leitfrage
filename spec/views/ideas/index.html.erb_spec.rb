@@ -4,11 +4,11 @@ RSpec.describe "ideas/index", type: :view do
   before(:each) do
     assign(:ideas, [
       Idea.create!(
-        :question => "Question",
+        :question => "Question1",
         :explanation => "MyText"
       ),
       Idea.create!(
-        :question => "Question",
+        :question => "Question1",
         :explanation => "MyText"
       )
     ])
@@ -16,7 +16,7 @@ RSpec.describe "ideas/index", type: :view do
 
   it "renders a list of ideas" do
     render
-    assert_select "tr>td", :text => "Question".to_s, :count => 2
-    assert_select "tr>td", :text => "MyText".to_s, :count => 2
+    assert_select "div", :text => "Question1".to_s, :count => 2
+    assert_select "div", :text => "MyText".to_s, :count => 2
   end
 end

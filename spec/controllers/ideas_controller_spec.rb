@@ -20,11 +20,13 @@ require 'rails_helper'
 
 RSpec.describe IdeasController, type: :controller do
 
+  let(:term){ term = Term.create()}
+
   # This should return the minimal set of attributes required to create a valid
   # Idea. As you add validations to Idea, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {question: "Was ist eine Kugel?", explanation: "Diese Frage ist Unsinn"}
+    {question: "Was ist eine Kugel?", explanation: "Diese Frage ist Unsinn", term_id: term.id}
   }
 
   let(:invalid_attributes) {
@@ -81,9 +83,9 @@ RSpec.describe IdeasController, type: :controller do
         expect(assigns(:idea)).to be_persisted
       end
 
-      it "redirects to the created idea" do
+      it "redirects to the related term" do
         post :create, {:idea => valid_attributes}, valid_session
-        expect(response).to redirect_to(Idea.last)
+        expect(response).to redirect_to(Idea.last.term)
       end
     end
 
@@ -110,7 +112,7 @@ RSpec.describe IdeasController, type: :controller do
         idea = Idea.create! valid_attributes
         put :update, {:id => idea.to_param, :idea => new_attributes}, valid_session
         idea.reload
-        expect(idea.question).to eq("Eine neue Frage"); 
+        expect(idea.question).to eq("Eine neue Frage");
       end
 
       it "assigns the requested idea as @idea" do

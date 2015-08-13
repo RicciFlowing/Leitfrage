@@ -14,7 +14,8 @@ class IdeasController < ApplicationController
 
   # GET /ideas/new
   def new
-    @idea = Idea.new
+    @term_id = idea_from_term_params[:term] || nil
+    @idea = Idea.new()
   end
 
   # GET /ideas/1/edit
@@ -25,10 +26,12 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     @idea = Idea.new(idea_params)
-
+    if idea_params[:term_id]
+      @term = Term.find(idea_params[:term_id])
+    end
     respond_to do |format|
       if @idea.save
-        format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
+        format.html { redirect_to @term, notice: 'Idea was successfully created.' }
         format.json { render :show, status: :created, location: @idea }
       else
         format.html { render :new }
@@ -69,6 +72,10 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:question, :explanation)
+      params.require(:idea).permit(:question, :explanation, :term_id)
+    end
+
+    def idea_from_term_params
+      params.permit(:term)
     end
 end
