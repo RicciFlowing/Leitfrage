@@ -21,12 +21,13 @@ require 'rails_helper'
 RSpec.describe IdeasController, type: :controller do
 
   let(:term){ term = Term.create()}
-
+  user = FactoryGirl.create(:user)
+  after(:all){user.destroy}         # Keep the test database clean
   # This should return the minimal set of attributes required to create a valid
   # Idea. As you add validations to Idea, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    {question: "Was ist eine Kugel?", explanation: "Diese Frage ist Unsinn", term_id: term.id}
+    {question: "Was ist eine Kugel?", explanation: "Diese Frage ist Unsinn", term_id: term.id, user_id: user.id}
   }
 
   let(:invalid_attributes) {
@@ -57,14 +58,14 @@ describe "With no user signed in" do
 
   describe "POST #create" do
     subject {post :create, {:idea => valid_attributes}}
-      it "shoould redirect to create a new_user_session_path" do
+      it "should redirect to create a new_user_session_path" do
         expect{redirect_to new_user_session_path}
       end
     end
 end
 
 describe "With user signed in" do
-  let(:user){FactoryGirl.create(:user)}
+
 
   before(:each) do
     sign_in user

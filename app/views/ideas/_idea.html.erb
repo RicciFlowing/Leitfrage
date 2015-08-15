@@ -10,5 +10,5 @@
   </div>
   <div class="col-md-1">
     <%= link_to 'Show', idea %>
-    <%= link_to 'Edit', edit_idea_path(idea) %>
+    <%= link_to 'Edit', edit_idea_path(idea) if can? :update, idea %>
   </div>
