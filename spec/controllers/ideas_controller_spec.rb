@@ -38,7 +38,7 @@ RSpec.describe IdeasController, type: :controller do
   # IdeasController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-describe "Wit no user signed in" do
+describe "With no user signed in" do
   describe "GET #index" do
     it "assigns all ideas as @ideas" do
       idea = Idea.create! valid_attributes
@@ -64,10 +64,12 @@ describe "Wit no user signed in" do
 end
 
 describe "With user signed in" do
+  let(:user){FactoryGirl.create(:user)}
 
   before(:each) do
-    sign_in FactoryGirl.create(:user)
+    sign_in user
   end
+
 
   describe "GET #new" do
     it "assigns a new idea as @idea" do
