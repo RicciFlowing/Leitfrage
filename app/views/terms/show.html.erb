@@ -1,7 +1,6 @@
 <h2><%=@term.name%></h2>
-  <ul>
-    <% @term.ideas.each do |idea| %>
-    <li><%= render idea %></li>
-    <%end%>
-    <li> <%= link_to "Erstell eine neue Idee", new_idea_path(term: @term)%></li>
-  </ul>
+
+  <% @term.ideas.each do |idea| %>
+  <%= render idea %>
+  <%end%>
+  <%= link_to "Erstell eine neue Idee", new_idea_path(term: @term)%>
