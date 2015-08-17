@@ -1,0 +1,5 @@
+<%= form_tag("/votes", method: "post") do %>
+  <%= hidden_field_tag :idea_id,  idea.id %>
+  <%= hidden_field_tag :user_id,  current_user.id %>
+  <%= submit_tag("Vote Up") %>
+<% end %>

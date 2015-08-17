@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :votes, only: [:create,:destroy]
+
   devise_for :users
   resources :ideas
   resources :terms, only: [:index,:show]

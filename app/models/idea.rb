@@ -4,4 +4,5 @@ class Idea < ActiveRecord::Base
 
   belongs_to :term
   belongs_to :user
+  has_many   :votes
 end

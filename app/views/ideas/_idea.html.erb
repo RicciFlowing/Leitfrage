@@ -1,8 +1,9 @@
-<div class="row">
+<div class="row well">
 <div class="col-sm-2">
-  Rating
+  <%= render 'votes/votes', votes: idea.votes %>
+  <%= render 'votes/form', idea: idea %>
 </div>
-<div class="col-sm-10 well">
+<div class="col-sm-10">
 <div class="row">
   <div class="col-sm-10">
       <h3><%= link_to idea.question, idea%></h3>

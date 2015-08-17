@@ -53,6 +53,7 @@ describe "With no user signed in" do
       idea = Idea.create! valid_attributes
       get :show, {:id => idea.to_param}, valid_session
       expect(assigns(:idea)).to eq(idea)
+      expect(assigns(:votes_count)).to eq(idea.votes.count)
     end
   end
 
