@@ -10,9 +10,10 @@ RSpec.describe VotesController, type: :controller do
     {user_id: nil, idea_id: nil}
   }
 
+
   describe "Post create" do
     context "with valid_params" do
-      it "creates a new idea" do
+      it "creates a new vote" do
         request.env["HTTP_REFERER"] = "/"
         expect {
           post :create, {:vote => valid_attributes}
@@ -20,4 +21,15 @@ RSpec.describe VotesController, type: :controller do
       end
     end
   end
+
+  describe "Post destroy" do
+      it "destroys the vote" do
+        vote = FactoryGirl.create(:vote)
+        request.env["HTTP_REFERER"] = "/"
+        expect {
+          post :destroy, {id: vote.id}
+        }.to change(Vote, :count).by(-1)
+      end
+  end
+
 end

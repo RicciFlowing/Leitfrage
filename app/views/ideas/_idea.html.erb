@@ -2,10 +2,10 @@
 <div class="col-sm-2">
   <%= render 'votes/votes', votes: idea.votes %>
   <% unless Vote.has_voted?(current_user,idea) %>
-   <%= render 'votes/form', idea: idea %>
-   <%else%>
-      <p>Allready Voted</p>
-   <%end%>
+    <%= render 'votes/form', idea: idea %>
+  <%else%>
+    <%= render 'votes/delete', vote: Vote.where(user: current_user, idea: idea).first %>
+  <%end%>
 </div>
 <div class="col-sm-10">
 <div class="row">
