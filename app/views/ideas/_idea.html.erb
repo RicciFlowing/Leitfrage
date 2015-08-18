@@ -1,7 +1,11 @@
 <div class="row well">
 <div class="col-sm-2">
   <%= render 'votes/votes', votes: idea.votes %>
-  <%= render 'votes/form', idea: idea %>
+  <% unless Vote.has_voted?(current_user,idea) %>
+   <%= render 'votes/form', idea: idea %>
+   <%else%>
+      <p>Allready Voted</p>
+   <%end%>
 </div>
 <div class="col-sm-10">
 <div class="row">
